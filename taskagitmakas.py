@@ -5,6 +5,8 @@ secenek = {1: "Taş", 2: "Kağıt", 3: "Makas"}
 
 def taskagitmakas():
     tur = int(input("Oyun kaç tur olsun? "))
+    skor_rakip = 0
+    skor_oyuncu = 0
     i = 0
     while i < tur:
         secim = int(input("Taş[1]\nKağıt[2]\nMakas[3]\nBİRİNİ SEÇ : "))
@@ -15,11 +17,20 @@ def taskagitmakas():
         if secim != rakip:
             if (secim == 1 and rakip == 3) or (secim == 2 and rakip == 1) or (secim == 3 and rakip == 2):
                 print(f"\033[32mKAZANDIN\033[0m Sen: {secenek[secim]} Rakip: {secenek[rakip]}")
+                skor_oyuncu += 1
             else:
                 print(f"\033[31mKAYBETTİN\033[0m Sen: {secenek[secim]} Rakip: {secenek[rakip]}")
+                skor_rakip += 1
         else:
             print(f"\033[33mBERABERE\033[0m Sen: {secenek[secim]} Rakip: {secenek[rakip]}")
+            i -= 1
         i += 1
-
+    print("*"*30)
+    if skor_oyuncu < skor_rakip:
+        print(f"OYUN SONUCU: \033[31mKAYBETTİN\033[0m\nSen: {skor_oyuncu} - Rakip: {skor_rakip}")
+    elif skor_rakip < skor_oyuncu:
+        print(f"OYUN SONUCU: \033[32mKAZANDIN\033[0m\nSen: {skor_oyuncu} - Rakip: {skor_rakip}")
+    else:
+        print(f"OYUN SONUCU: \033[33mBERABERE\033[0m\nSen: {skor_oyuncu} - Rakip: {skor_rakip}")
 
 taskagitmakas()
